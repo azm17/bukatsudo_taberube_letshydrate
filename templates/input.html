@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../static/css/input.css">
+	<title>{{ title }}</title>
+</head>
+<body>
+	<form action="http://{{serverhost}}/enter" method="post">
+		<header>
+			<h2>
+				{% block content %}
+				<!-- ここにメインコンテンツを書く -->
+				{% endblock %}
+			</h2>
+		</header>
+		<main>
+		<table>
+			<tr><td>運動前体重(kg)</td><td><input value="60" step="0.1" type="number" name="wb" class="underline"></td></tr>
+			<tr><td>運動後体重(kg)</td><td><input value="60" step="0.1" type="number" name="wa"></td></tr>
+			<tr>
+				<td>トレーニング内容</td>
+				<td>
+					<input type="text" name="text" size="20">
+				</td>
+			</tr>
+			<tr>
+				<td>トレーニング時間(h)</td>
+				<td>
+				<select name="time">
+					<option value="">-</option>
+					{% for i in range(49) %}
+					<option value="{{i/2}}">{{i/2}}</option>
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr><td>飲水量(L)</td>
+				<td>
+					<select name="moi">
+					<option value="">-</option>
+					{% for i in water %}
+					<option value="{{i}}">{{i}}</option>
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>天気</td>
+				<td>
+					<select name="tenki">
+					{% for i in weather %}
+					<option value="{{i.num}}">{{i.moji}}</option>
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>気温(℃)</td>
+				<td>
+					<select name="temp">
+						<option value="">-</option>
+						{% for i in range(66) %}
+						<option value="{{i-20}}">{{i-20}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>湿度(％)</td>
+				<td>
+					<select name="sitsu">
+						<option value="">-</option>
+						{% for i in range(101) %}
+						<option value="{{i}}">{{i}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+		</table>
+		<div class="center">
+			<input type="submit" value="送信" class="button">
+		</div>
+		</main>
+	</form>
+</body>
+<footer>
+<p>COPYRIGHT &#169; azumi, kenshin and daiki ALL RIGHTS RESERVED.	</p>
+</footer>
+</html>

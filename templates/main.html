@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>メインページ</title>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+</head>
+<body width="100%">
+	<h2>&nbsp;部活Do!食べる部 
+		<br>&nbsp;&nbsp;&nbsp;&nbsp;Let's hydrate！</h2>
+	<div><br>
+		<div>
+		<h3>{{rname}}さん、ようこそ　部活Do!食べる部。</h3>
+		<h2>{{latest.date}}の結果</h2>
+		</div>
+		<table id="output" class="setwidth">
+		<tr>
+			<th>トレーニング内容</th>
+			<th>天気</th>
+		<tr>
+			</tr>
+			<td align="center">
+			{{latest.training}}
+			</td>
+			<td align="center">
+			{{latest.tenki}}
+			</td>
+		</tr>
+		<tr>
+			<th>気温</th>
+			<th>湿度</th>
+		<tr>
+		</tr>
+			<td align="center">
+			{{latest.temp}} ℃
+			</td>
+			<td align="center">
+			{{latest.shitsudo}} %
+			</td>
+		</tr>
+		<tr>
+			<th>運動前体重</th>
+			<th>運動後体重</th>
+		</tr>
+		<tr>
+			<td align="center">
+			{{latest.bweight}} kg
+			</td>
+			<td align="center">
+			{{latest.aweight}} kg
+			</td>
+		</tr>
+		<tr>
+			<th>飲水量</th>
+			<th>脱水率</th>
+		</tr>
+		<tr>
+			<td align="center">
+			{{latest.intake}} L
+			</td>
+			<td align="center">
+			{{latest.dehydraterate}} %
+			</td>
+		</tr>
+		<tr>
+			<th>必要飲水量</th>
+			<th>トレーニング時間</th>
+		</tr>
+		<tr>
+			<td align="center">
+			{{latest.necessary}} L
+			</td>
+			<td align="center">
+			{{latest.period}} h
+			</td>
+		</tr>
+		<tr>
+			<th>1%脱水体重</th>
+			<th>1%脱水必要飲水量</th>
+		</tr>
+		<tr>
+			<td align="center">
+			{{latest.w1}} kg 
+			</td>
+			<td align="center">
+			{{latest.necessary1}} L
+			</td>
+		</tr>
+		</table>
+		<div>
+		<div class="balloon5">
+		  <div class="faceicon">
+		    <img src="./static/img/{{img}}" alt="鈴木さん1" title="test">
+		  </div>
+		  <div class="chatting">
+		    <div class="says">
+		      <p>{{comment}}</p>
+		    </div>
+		  </div>
+		</div>
+	<br>
+	<h3>アスリートのみなさんへ</h3>
+	{% for text in texts%}
+	<div class="box30 setwidth2">
+		<div class="box-title">[{{text.day}}] {{text.title}}
+		</div>
+    <p>{{text.contents}}</p>
+    </div>
+    {% endfor %}
+    <br><br>
+	<h2>過去の結果</h2>
+	<table id="output">
+		<th class="sticky">日付</th>
+		<th class="sticky">天気</th>
+		<th class="sticky">気温</th>
+		<th class="sticky">湿度</th>
+		<th class="sticky">トレーニング</th>
+		<th class="sticky">運動前体重</th>
+		<th class="sticky">運動後体重</th>
+		<th class="sticky">飲水量</th>
+		<th class="sticky">脱水量</th>
+		<th class="sticky">脱水率</th>
+		<th class="sticky">運動時間</th>
+		{% for post in posts %}
+    	<tr>
+    	 <td>{{post.date}}</td>
+    	 <td>{{post.tenki}}</td>
+    	 <td>{{post.temp}} ℃</td>
+    	 <td>{{post.shitsudo}} %</td>
+    	 <td>{{post.training}}</td>
+    	 <td>{{post.bweight}} kg</td>
+    	 <td>{{post.aweight}} kg</td>
+    	 <td>{{post.intake}} L</td>
+    	 <td>{{post.dehydrateval}} L</td>
+    	 <td>{{post.dehydraterate}} %</td>
+    	 <td>{{post.period}} h</td>
+    	</tr>
+    	{% endfor %}
+	</table>
+	</div>
+	<div id="fixed">
+		<nav>
+			<a href="http://{{serverhost}}/hello">データ入力</a>
+			<a href="http://{{serverhost}}/">ログアウト</a>
+		</nav>
+	</div>
+	<footer>
+<p>COPYRIGHT &#169; azumi, kenshin and daiki ALL RIGHTS RESERVED.	</p>
+</footer>
+</body>
+</html>

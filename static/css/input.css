@@ -1,0 +1,66 @@
+* {
+	margin: 0;
+}
+
+body {
+	/*background: #c6e6ee;*/
+	background-image: linear-gradient(to right, #2BC0E4 0%, #EAECC6 100%);
+	font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'  
+}
+
+form {
+	width: 96%;
+	margin: 10px auto;
+}
+
+header {
+	color: white;
+	min-height: 3em;
+}
+
+main {
+	font-weight: bold;
+	padding: 20px 5px;
+}
+h2 {
+	color: white;
+}
+input {
+	border-style: none;
+	border-bottom: solid 1px silver;
+}
+p {
+	color: white;
+}
+h3 {
+	color: white;
+}
+td {
+	color: white;
+}
+}
+.pfooter {
+	color: white;
+}
+
+.center {
+	text-align: center;
+}
+.button {
+	font-size: 1.4em;
+	font-weight: bold;
+	color: white;
+	background: #02badd;
+	margin-top: 30px;
+	padding: 5px 20px;
+	border-style: none;
+}
+img {
+	width: 100%;
+}
+
+@media screen and (min-width:500px) {
+img {
+width: 400px;
+}
+}

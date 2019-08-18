@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../static/css/admin_watch.css">
+	<title>watch</title>
+</head>
+<body>
+	<h2>&nbsp;部活Do!食べる部 for admin
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;Let's hydrate！</h2>
+	<main>
+		<p><a href="http://{{serverhost}}/admin/download?file=data">すべてのデータをCSVでダウンロード</a></p>
+		<p><a href="http://{{serverhost}}/admin/download?file=user">すべてのユーザー情報をCSVでダウンロード</a></p>
+		<h3>過去のデータの参照</h3>
+		<ol>
+			{% for post in posts %}
+			
+			<li><a href="http://{{serverhost}}/admin/watch/show?name={{post.id}}">{{post.org}} {{post.year}} {{post.name}}</a></li>
+
+			{% endfor %}
+		</ol>
+	</main>
+</body>
+
+<footer>
+<p>COPYRIGHT &#169; azumi, kenshin and daiki ALL RIGHTS RESERVED.	</p>
+</footer>

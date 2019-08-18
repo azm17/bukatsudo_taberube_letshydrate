@@ -1,0 +1,170 @@
+* {
+	margin: 0;
+}
+
+body {
+	background: #2BC0E4;
+	font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'  
+}
+
+nav {
+	height: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+nav a {
+	background: #02badd;
+	padding: 5px;
+	color: white;
+	text-decoration: none;
+}
+
+#output {
+	overflow: scroll;
+	white-space:nowrap;
+	border-collapse: collapse;
+	margin-bottom: 3em;
+}
+
+h2 {
+	color: white;
+}
+h3{
+	color: white;
+}
+table{
+	background: white;
+}
+#output th, #output td{
+	border: solid 1px #02badd;
+}
+
+#output th {
+	color: white;
+	background: #51a488;
+	border-top: #02badd;
+}
+.sticky {
+  position: -webkit-sticky; /* safari対応 */
+  position: sticky;
+  top: 0;　/* 上端から10pxのところで固定 */
+}
+
+#fixed {
+	position: fixed;
+	bottom: 0;
+	height: 3em;
+	width: 100%;
+	background: #c6e6ee;
+	color:white;
+}
+.tcolor{
+	background: #65cfab;
+}
+
+.balloon4 {
+  position: relative;
+  margin: 2em 0 2em 40px;
+  padding: 15px;
+  background: #fff0c6;
+  border-radius: 30px;
+
+}
+.balloon5 {
+  width: 100%;
+  margin: 1.5em 0;
+  overflow: hidden;
+}
+
+.balloon5 .faceicon {
+  float: left;
+  margin-right: -90px;
+  width: 80px;
+}
+
+.balloon5 .faceicon img{
+  width: 100%;
+  height: auto;
+  border: solid 3px #d7ebfe;
+  border-radius: 50%;
+}
+
+.balloon5 .chatting {
+  width: 100%;
+}
+
+.says {
+  display: inline-block;
+  position: relative; 
+  margin: 5px 0 0 105px;
+  padding: 17px 13px;
+  border-radius: 12px;
+  background: #d7ebfe;
+}
+
+.says:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 18px; 
+  left: -24px;
+  border: 12px solid transparent;
+  border-right: 12px solid #d7ebfe;
+}
+
+.says p {
+  margin: 0;
+  padding: 0;
+}
+.setwidth {
+	width: 100%;
+}
+.setwidth2 {
+	width: 100%;
+}
+.box18{
+    margin:2em 0;
+    position: relative;
+    padding: 0.25em 1em;
+    border: solid 2px #ffcb8a;
+    border-radius: 3px 0 3px 0;
+}
+
+.box30 {
+    margin: 2em 0;
+    background: #f1f1f1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
+}
+.box30 .box-title {
+    font-size: 1.2em;
+    background: #5fc2f5;
+    padding: 4px;
+    color: #FFF;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+.box30 p {
+    padding: 15px 20px;
+    margin: 0;
+}
+
+@media screen and (min-width:500px) {
+.setwidth {
+	width: 100px;
+}
+.setwidth2 {
+	width: 250px;
+}
+.balloon5 {
+  width: 300px;
+  margin: 1.5em 0;
+  overflow: hidden;
+}
+}
+
+}
+footer {
+  color: white
+}

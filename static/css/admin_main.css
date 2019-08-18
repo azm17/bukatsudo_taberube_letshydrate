@@ -1,0 +1,139 @@
+* {
+  margin: 0;
+}
+body {
+  /*background-image: linear-gradient(to right, #243949 0%, #517fa4 100%);*/
+  background-image: linear-gradient(to right, #2BC0E4 0%, #EAECC6 100%);
+  /*background: #c6e6ee;*/
+  /*background-image: linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%);*/
+  font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'  
+}
+main {
+  /*background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);*/
+  /*background: white;*/
+  font-weight: bold;
+  margin: 10px 20px;
+  padding-bottom:  30px;
+
+}
+h2 {
+  /*background: #02badd;*/
+  color: white
+}
+.button {
+  border-style: none;
+}
+.parent {
+  display: flex;
+  margin-top: 50px;
+}
+.parent01 {
+  justify-content: space-evenly;
+}
+.parent02 {
+  justify-content: space-evenly;
+}
+.parent03 {
+  justify-content: space-evenly;
+}
+.child {
+  width: 50px;
+  height: 50px;
+  background: #98d7e3;
+  color:white;
+  text-decoration: none;
+  box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.4);
+  border-radius: 10px;
+  background-size: 100%;
+}
+.childnew {
+  background: white;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("../img/icon.png");
+  background-size: 80%;
+}
+.child1 {
+  background: white;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("../img/icon.png");
+  background-size: 80%;
+}
+.child2 {
+  background: white;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url("../img/tty.png");
+  background-size: 65%;
+}
+p {
+  transform: translate(0px,65px);
+  text-align: center;
+  font-size: 0.7em;
+  color: white;
+}
+.p_red {
+  color: red;
+}
+.childanlysis{
+  background: white;
+  background-image: url("../img/anlysis.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+}
+.childwatch{
+  background: white;
+  background-image: url("../img/watch.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+}
+
+.childshow{
+  background: white;
+  background-image: url("../img/show.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+}
+
+.childweather{
+  background: white;
+  background-image: url("../img/sun.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+}
+
+.childregister{
+  background: white;
+  background-image: url("../img/register.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+}
+
+.childlogout{
+  background: white;
+  background-image: url("../img/logout.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+}
+
+}
+footer {
+  color: white
+}
+
+@media screen and (min-width:500px) {
+.child {
+width: 100px;
+height: 100px;
+}
+p {
+transform: translate(0px, 115px);
+}
+}

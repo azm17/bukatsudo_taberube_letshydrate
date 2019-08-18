@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>メインページ</title>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../static/css/admin_show.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+</head>
+<body>
+	<main>
+		<h2>Application for admin</h2>
+		<h3>{{user}}さんのデータ</h3>
+		<table id="output">
+			<th>日付</th><th>トレーニング内容</th><th>運動前体重(kg)</th><th>運動後体重(kg)</th><th>脱水量(L)</th><th>脱水率(%)</th><th>水分摂取量</th><th>運動時間(h)</th>
+			{% for post in posts %}
+	    	<tr>
+	    	 <td>{{post.date}}</td> <td>{{post.training}}</td> <td>{{post.bweight}}</td> <td>{{post.aweight}}</td> <td>{{post.dehydrateval}}</td> <td>{{post.dehydraterate}}</td> <td>{{post.intake}}</td> <td>{{post.period}}</td>
+	    	</tr>
+	    	{% endfor %}
+		</table>
+	</main>
+</body>
+
+<footer>
+<p>COPYRIGHT &#169; azumi, kenshin and daiki ALL RIGHTS RESERVED.	</p>
+</footer>

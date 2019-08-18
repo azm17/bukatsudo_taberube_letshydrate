@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../static/css/admin_register.css">
+	<title>ユーザーの追加</title>
+</head>
+<body>
+	<h2>&nbsp;部活Do!食べる部 for admin
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;Let's hydrate！</h2>
+		<main>
+			<form action="http://{{serverhost}}/admin/register" method="post">
+			<h2>新しいユーザー</h2>
+			<h3>{{text}}</h3>
+			<table>
+				<tr><td>ユーザー名</td><td><input type="text" name="newuser"></td></tr>
+				<tr><td>パスワード</td><td><input type="text" name="newpass"></td></tr>
+				<tr><td>名前</td>
+					<td><input type="text" name="rname"></td>
+				</tr>
+				<tr>
+					<td>属性</td>
+					<td>
+					<select name="type">
+						<option value="1">一般ユーザー</option>
+						<option value="0">管理ユーザー</option>
+					</select>
+					</td>
+				</tr>
+				<tr><td>組織</td>
+					<td><input type="text" name="org"></td>
+				</tr>
+				<tr><td>年度</td>
+					<td><input value="{{year}}" step="1" type="number" name="year"></td>
+				</tr>
+			</table>
+			<div>
+				<input type="submit" value="追加" class="button">
+			</div>
+			</form>
+			<form action="http://{{serverhost}}/admin/show" method="post">
+				<div>
+				<input type="submit" value="戻る" class="button">
+				</div>
+			</form>
+		</main>
+</body>
+</html>
+
+<footer>
+<p>COPYRIGHT &#169; azumi, kenshin and daiki ALL RIGHTS RESERVED.	</p>
+</footer>

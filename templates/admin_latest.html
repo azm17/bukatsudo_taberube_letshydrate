@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>最近の更新</title>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../static/css/admin_latest.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+</head>
+<body>
+  <h2>&nbsp;部活Do!食べる部 for admin
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;Let's hydrate！</h2>
+	<main>
+		<h3>最近の結果</h3>
+	<table id="output">
+		<th>日付</th>
+    <th>ユーザー</th>
+    <th>天気</th>
+    <th>気温(℃)</th>
+    <th>湿度(%)</th>
+    <th>トレーニング</th>
+    <th>運動前体重(kg)</th>
+    <th>運動後体重(kg)</th>
+    <th>飲水量(L)</th>
+    <th>脱水量(L)</th>
+    <th>脱水率(%)</th>
+    <th>運動時間(h)</th>
+		{% for post in posts %}
+    	<tr>
+    	 <td>{{post.date}}</td></td>
+       <td>{{post.username}}</td>
+       <td>{{post.tenki}}</td>
+       <td>{{post.temp}}</td>
+       <td>{{post.shitsudo}}</td>
+       <td>{{post.training}}</td>
+       <td>{{post.bweight}}</td>
+       <td>{{post.aweight}}</td>
+       <td>{{post.intake}}</td>
+       <td>{{post.dehydrateval}}</td>
+       <td>{{post.dehydraterate}}</td>
+       <td>{{post.period}}
+    	</tr>
+    	{% endfor %}
+	</table>
+	</main>
+</body>
+
+<footer>
+<p>COPYRIGHT &#169; azumi, kenshin and daiki ALL RIGHTS RESERVED. </p>
+</footer>

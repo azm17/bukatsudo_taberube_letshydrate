@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../static/css/admin_message.css">
+	<title>{{ title }}</title>
+</head>
+<body>
+	<h2>&nbsp;部活Do!食べる部 for admin
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;Let's hydrate！</h2>
+	<main>
+	<form action="http://{{serverhost}}/admin/message" method="post">
+		<header>
+			<h2>連絡事項</h2>
+			<h2>
+				{% block content %}
+				<!-- ここにメインコンテンツを書く -->
+				{% endblock %}
+			</h2>
+		</header>
+		<main>
+		<table>
+			<tr><td>タイトル</td>
+				<td><input type="text" name="title" class="underline"></td></tr>
+			<tr><td>連絡内容</td>
+				<td><textarea name="contents" rows=5 cols=40></textarea></td></tr>
+		</table>
+		<div>
+			<input type="submit" value="送信" class="button">
+		</div>
+		</main>
+	</form>
+	<form action="http://{{serverhost}}/admin/show" method="post">
+		<div>
+			<input type="submit" value="戻る" class="button">
+		</div>
+	</form>
+	<h3>過去の連絡</h3>
+	<table id="output">
+		<th>日付</th>
+		<th>ユーザー名</th>
+		<th>グループ</th>
+		<th>タイトル</th>
+		<th>連絡内容</th>
+		{% for post in posts %}
+		<tr>
+		 <td>{{post.day}}</td></td>
+		 <td>{{post.rname}}</td>
+		 <td>{{post.group}}</td>
+		 <td>{{post.title}}</td>
+		 <td>{{post.contents}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	</main>
+</body>
+</html>
+
+<footer>
+<p>COPYRIGHT &#169; azumi, kenshin and daiki ALL RIGHTS RESERVED.	</p>
+</footer>
