@@ -6,7 +6,6 @@ herokuにアップしたテスト用のアプリはアクセスはこちら[一�
 # 1. サーバーの導入方法
 このアプリケーションサーバープログラム（server.pyおよびmy_function2_sql.py）は，Pythonのウェブアプリケーションフレームワーク Flaskをベースに作られており，それらに関するモジュールやその他のいくつかのモジュールをインストールする必要がある．例として，アプリケーションサーバーをUbuntu 18.04に導入する方法を記述していく．
 
-### 情報
 #### サーバー情報
 $ lsb_release -a  
 No LSB modules are available.  
@@ -61,7 +60,7 @@ server_host='{グローバルIPまたは，URL}'
 ###### 32行目
 server_port=50000  
 ⇒
-server_host='{server.pyを実行するサーバーのポート番号}'
+server_port='{server.pyを実行するサーバーのポート番号}'
 
 
 に変更する．※プログラム中には{}は不要
@@ -78,10 +77,10 @@ SQLserver_port=3306  ※SQLサーバーのポート番号
 
 
 #### 6.アプリケーションを実行
-python3 server.py
+$ python3 server.py
 
 # 2. 脱水管理アプリ開発計画
-日付，天気，湿度，トレーニング，時間，運動前体重，運動後体重，飲水量をデータベースに保存し日々の脱水を管理する．
+日付，天気，湿度，トレーニング，時間，運動前体重，運動後体重，飲水量をデータベースに保存し日々の脱水を管理する．開発用のリポジトリは[こちら](https://github.com/azm17/app0702)．
 ## 2.1. 機能
 ### 一般ユーザー向け
 - 天気，湿度，トレーニング，時間，運動前体重，運動後体重，飲水量入力しデータベースに保存
@@ -113,7 +112,7 @@ python3 server.py
 |tomohiro|tsuchiya|ge|土屋|shizuoka|2019|
 
 #### テーブルdata（トレーニング結果）
-|id|day|weather|humidity|training|time|bweight|aweight|water|temp|rtime
+|id|day|weather|humidity|training|time|bweight|aweight|water|temp|rtime|
 |---|---|---|---|---|---|---|---|---|---|
 |azumi|2019-08-02|0|50|マラソン|2|70|68.9|0|30|201902191657|
 |daiki|2019-08-02|1|40|twitter|2|60|59.8|0.1|30|201902191667|
@@ -122,12 +121,10 @@ python3 server.py
 |daiki|2019-08-03|1|40|twitter|2|60|59.8|0.1|30|201902191697|
 |tomohiro|2019-08-03|2|30|ゲーム|2|55|54.9|0.3|30|201902191757|
 
-#### borad (掲示板)
+#### デーブルborad (掲示板)
 |day|tolist|fromlist|title|contents|
 |---|---|---|---|---|
 |2019-08-11|ALL|azumi|名言|天才とは努力する凡才のことである．|
 |2019-08-12|ALL|azumi|名言|今日は暑いですね．|
 
 ※ALLは全員へ
-
-## 2.4. アプリケーションサーバーのプログラム説明

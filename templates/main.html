@@ -123,6 +123,8 @@
 		<th class="sticky">脱水量</th>
 		<th class="sticky">脱水率</th>
 		<th class="sticky">運動時間</th>
+		<th class="sticky">1%脱水体重</th>
+		<th class="sticky">1%脱水必要飲水量</th>
 		{% for post in posts %}
     	<tr>
     	 <td>{{post.date}}</td>
@@ -136,6 +138,8 @@
     	 <td>{{post.dehydrateval}} L</td>
     	 <td>{{post.dehydraterate}} %</td>
     	 <td>{{post.period}} h</td>
+    	 <td>{{latest.w1}} kg</td>
+    	 <td>{{latest.necessary1}} %</td>
     	</tr>
     	{% endfor %}
 	</table>

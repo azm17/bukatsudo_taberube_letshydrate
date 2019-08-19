@@ -25,6 +25,8 @@
     <th>脱水量(L)</th>
     <th>脱水率(%)</th>
     <th>運動時間(h)</th>
+    <th>1%脱水体重</th>
+    <th>1%脱水必要飲水量</th>
 		{% for post in posts %}
     	<tr>
     	 <td>{{post.date}}</td></td>
@@ -38,7 +40,9 @@
        <td>{{post.intake}}</td>
        <td>{{post.dehydrateval}}</td>
        <td>{{post.dehydraterate}}</td>
-       <td>{{post.period}}
+       <td>{{post.period}}</td>
+       <td>{{post.w1}}</td>
+       <td>{{post.necessary1}}</td>
     	</tr>
     	{% endfor %}
 	</table>

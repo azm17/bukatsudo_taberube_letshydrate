@@ -12,10 +12,34 @@
 		<h2>Application for admin</h2>
 		<h3>{{user}}さんのデータ</h3>
 		<table id="output">
-			<th>日付</th><th>トレーニング内容</th><th>運動前体重(kg)</th><th>運動後体重(kg)</th><th>脱水量(L)</th><th>脱水率(%)</th><th>水分摂取量</th><th>運動時間(h)</th>
+			<th>日付</th>
+			<th>天気</th>
+			<th>気温(℃)</th>
+			<th>湿度(%)</th>
+			<th>トレーニング</th>
+			<th>運動前体重(kg)</th>
+			<th>運動後体重(kg)</th>
+			<th>水分摂取量</th>
+			<th>脱水量(L)</th>
+			<th>脱水率(%)</th>
+			<th>運動時間(h)</th>
+			<th>1%脱水体重(kg)</th>
+    		<th>1%脱水必要飲水量(L)</th>
 			{% for post in posts %}
 	    	<tr>
-	    	 <td>{{post.date}}</td> <td>{{post.training}}</td> <td>{{post.bweight}}</td> <td>{{post.aweight}}</td> <td>{{post.dehydrateval}}</td> <td>{{post.dehydraterate}}</td> <td>{{post.intake}}</td> <td>{{post.period}}</td>
+	    	 <td>{{post.date}}</td>
+	    	 <td>{{post.tenki}}</td>
+	    	 <td>{{post.temp}}</td>
+	    	 <td>{{post.shitsudo}}</td>
+	    	 <td>{{post.training}}</td>
+	    	 <td>{{post.bweight}}</td>
+	    	 <td>{{post.aweight}}</td>
+	    	 <td>{{post.intake}}</td>
+	    	 <td>{{post.dehydrateval}}</td>
+	    	 <td>{{post.dehydraterate}}</td>
+	    	 <td>{{post.period}}</td>
+	    	 <td>{{post.w1}}</td>
+       		 <td>{{post.necessary1}}</td>
 	    	</tr>
 	    	{% endfor %}
 		</table>

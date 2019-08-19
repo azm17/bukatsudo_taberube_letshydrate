@@ -21,24 +21,24 @@ import glob
 
 app = Flask(__name__)
 #server host
-server_host='192.168.0.12'
+#server_host='192.168.0.12'
 #server_host='192.168.2.102'
 #server_host='192.168.56.1'
 #server_host='192.168.0.6'
-#server_host='test-server0701.herokuapp.com'
+server_host='test-server0701.herokuapp.com'
 
 
 # serverport
 server_port=50000
-server_address=server_host+':'+str(server_port)
-#server_address=server_host
+#server_address=server_host+':'+str(server_port)
+server_address=server_host
 
 #SQL server
-SQLserver_host='192.168.0.32'
-SQLserver_port=3306
-database_name='hydration_db'
-sql_userid='sql_azumi'
-sql_userpass='sql_mamiya'
+#SQLserver_host='192.168.0.32'
+#SQLserver_port=3306
+#database_name='hydration_db'
+#sql_userid='sql_azumi'
+#sql_userpass='sql_mamiya'
 
 tenki_dic={'1':'🌞️','2':'☁️','3':'🌧️','4':'❄️'}
 # 一般ユーザーログイン画面送信
@@ -400,6 +400,9 @@ def admin_watch_show():
             data=my_func.sql_data_get(uid_get)
             posts=[]
             for d in reversed(data):#dataは辞書形式
+                neccessary1_tmp=round(float(d['wb']*0.01)+float(d['moi']),1)
+                if neccessary1_tmp<=0:
+                    neccessary1_tmp=0
                 posts.append({
                   'date' : d['day'],#日
                   'bweight' : d['wb'],#運動前体重
@@ -409,9 +412,11 @@ def admin_watch_show():
                   'intake' : d['moi'],#飲水量
                   'dehydraterate' : my_func.dassui_ritu(d['wb'],d['wa']),#脱水率
                   'dehydrateval' : str(round(float(d['wb'])-float(d['wa']),1)),#脱水量
-                  'tenki':d['tenki'],#天気
+                  'tenki':tenki_dic[str(d['tenki'])],#天気
                   'shitsudo':d['shitsudo'],#湿度
-                  'temp':d['temp']
+                  'temp':d['temp'],
+                  'w1':round(d['wb']*0.99,1),
+                  'necessary1':neccessary1_tmp
                 })
             print('Success')
             
@@ -459,6 +464,9 @@ def admin_latest():
             data=my_func.sql_data_get_latest_all()
             posts=[]
             for d in reversed(data):
+                neccessary1_tmp=round(float(d['wb']*0.01)+float(d['moi']),1)
+                if neccessary1_tmp<=0:
+                    neccessary1_tmp=0
                 posts.append({
                   'date':d['day'],#日
                   'bweight':d['wb'],#運動前体重
@@ -471,7 +479,9 @@ def admin_latest():
                   'tenki':tenki_dic[str(d['tenki'])],#天気
                   'shitsudo':d['shitsudo'],#湿度
                   'temp':d['temp'],
-                  'username':user_prof[d['username']]['rname']}# ユーザの本名
+                  'username':user_prof[d['username']]['rname'],
+                  'w1':round(d['wb']*0.99,1),
+                  'necessary1':neccessary1_tmp}# ユーザの本名
                 )
             print('Success')
             posts = reversed(sorted(posts, key=lambda x:x['date']))
