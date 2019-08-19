@@ -60,10 +60,10 @@ server_host='{グローバルIPまたは，URL}'
 
 ※server_hostはグローバルIPまたは，URLを指定しなければならなりませんが，プログラム一番下の  
 if __name__ == "__main__":
-  app.run(debug=False,
-              host=server_host,
-              port=server_port,
-              threaded=True)  
+  app.run(debug=False,  
+              host=server_host,  
+              port=server_port,  
+              threaded=True)   
 の部分のserver_hostの値はプライベートIPである必要がある場合があります。その場合， host='192.168.0.12'のように直接変更してください．
 
 
