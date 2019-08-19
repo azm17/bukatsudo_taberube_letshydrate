@@ -10,11 +10,11 @@ import mysql.connector
 import datetime
 import csv
 
-SQLserver_host='192.168.2.107'
+SQLserver_host='192.168.0.32'
 SQLserver_port=3306
 database_name='dehydration2'
-sql_userid='sql_azumi'
-sql_userpass='sql_mamiya'
+sql_userid='mutsu624'
+sql_userpass='624mutsu'
 
 #my_function内のみ使用
 #すべてのユーザーのIDとパスを表示

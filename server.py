@@ -21,8 +21,8 @@ import glob
 
 app = Flask(__name__)
 #server host
-#server_host='192.168.0.15'
-server_host='192.168.2.102'
+server_host='192.168.0.12'
+#server_host='192.168.2.102'
 #server_host='192.168.56.1'
 #server_host='192.168.0.6'
 #server_host='test-server0701.herokuapp.com'
@@ -101,7 +101,7 @@ def show():
         data=my_func.sql_data_get(userid)
         posts=[]
         for d in reversed(data):
-            neccessary1_tmp=round(float(d['wb']*0.99)-float(d['wa'])+float(d['moi']),1)
+            neccessary1_tmp=round(float(d['wb']*0.01)+float(d['moi']),1)
             if neccessary1_tmp<=0:
                 neccessary1_tmp=0
             posts.append({
@@ -148,7 +148,7 @@ def show():
                 日々のトレーニング後の脱水量を記録していきます。
                 最初のデータを入力しましょう。
                 下の「データ入力」ボタンから結果を登録できます。
-                また、「皆さんへの連絡」は、このアプリを利用している全員向けのコメントです。'''
+                また、「アスリートのみなさんへ」は、このアプリを利用している全員向けのコメントです。'''
             
             img='suzuki1.png'
         messages=my_func.sql_message_get(
