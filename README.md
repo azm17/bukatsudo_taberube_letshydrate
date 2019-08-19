@@ -59,7 +59,7 @@ server_host='test-server0701.herokuapp.com'
 server_host='{グローバルIPまたは，URL}'  
 
 ※server_hostはグローバルIPまたは，URLを指定しなければならなりませんが，プログラム一番下の  
-if __name__ == "__main__":
+if __name__ == "__main__":  
   app.run(debug=False,  
               host=server_host,  
               port=server_port,  
