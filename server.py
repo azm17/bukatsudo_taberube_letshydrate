@@ -733,11 +733,11 @@ def admin_download():
     ## SQL####
     
     if file=='data':
-        resp.data = open("./data.csv", "rb").read()
+        resp.data = open("./database/data.csv", "rb").read()
         downloadFileName = 'data.csv'    
         
     elif file=='user':
-        resp.data = open("./user_list.csv", "rb").read()
+        resp.data = open("./database/user_list.csv", "rb").read()
         downloadFileName = 'user.csv'
     resp.headers['Content-Disposition'] = 'attachment; filename=' + downloadFileName
     resp.mimetype = 'text/csv'
