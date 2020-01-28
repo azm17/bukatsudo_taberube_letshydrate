@@ -9,8 +9,10 @@
 </head>
 <body>
 	<main>
-		<h2>Application for admin</h2>
+		<h2>&nbsp;部活Do!食べる部
+    	<br>&nbsp;&nbsp;&nbsp;&nbsp;Let's hydrate！</h2>
 		<h3>{{user}}さんのデータ</h3>
+		<p><a href="http://{{serverhost}}/admin/download?file=data&name={{userid}}">CSV形式でダウンロード</a></p>
 		<table id="output">
 			<th>日付</th>
 			<th>天気</th>
@@ -35,7 +37,7 @@
 	    	 <td>{{post.bweight}}</td>
 	    	 <td>{{post.aweight}}</td>
 	    	 <td>{{post.intake}}</td>
-	    	 <td>{{post.dehydrateval}}</td>
+	    	 <td>{{post.necessary}}</td>
 	    	 <td>{{post.dehydraterate}}</td>
 	    	 <td>{{post.period}}</td>
 	    	 <td>{{post.w1}}</td>

@@ -7,14 +7,14 @@
 	<title>ユーザーの追加</title>
 </head>
 <body>
-	<h2>&nbsp;部活Do!食べる部 for admin
+	<h2>&nbsp;部活Do!食べる部
     <br>&nbsp;&nbsp;&nbsp;&nbsp;Let's hydrate！</h2>
 		<main>
-			<form action="http://{{serverhost}}/admin/register" method="post">
-			<h2>新しいユーザー</h2>
 			<h3>{{text}}</h3>
+			<form action="http://{{serverhost}}/admin/register?resgs=user" method="post">
+			<h2>新しいユーザーを追加する</h2>
 			<table>
-				<tr><td>ユーザー名</td><td><input type="text" name="newuser"></td></tr>
+				<tr><td>ユーザーID</td><td><input type="text" name="newuser"></td></tr>
 				<tr><td>パスワード</td><td><input type="text" name="newpass"></td></tr>
 				<tr><td>名前</td>
 					<td><input type="text" name="rname"></td>
@@ -24,16 +24,42 @@
 					<td>
 					<select name="type">
 						<option value="1">一般ユーザー</option>
-						<option value="0">管理ユーザー</option>
+						<option value="2">監督・コーチ</option>
+						<option value="0">管理者</option>
 					</select>
 					</td>
 				</tr>
 				<tr><td>組織</td>
-					<td><input type="text" name="org"></td>
+					<td>
+					<select name="org">
+						<option value="">-</option>
+						{% for post in posts_org %}
+						<option value="{{post.org_id}}">{{post.org_name}}</option>
+						{% endfor %}
+					</select>
+					</td>
 				</tr>
 				<tr><td>年度</td>
 					<td><input value="{{year}}" step="1" type="number" name="year"></td>
 				</tr>
+			</table>
+			<br>
+			<font color="white">
+				※一般ユーザー権限：一般ユーザー用の機能のみ利用可能<br>
+				　監督・コーチ権限：組織に関する情報の閲覧と掲示板の投稿のみ利用可能<br>
+				　管理者権限：このアプリに関するすべての機能が利用可能
+			</font>
+			<div>
+				<input type="submit" value="追加" class="button">
+			</div>
+			</form>
+
+			<br>
+			<form action="http://{{serverhost}}/admin/register?resgs=org" method="post">
+			<h2>新しい組織を追加する</h2>
+			<table>
+				<tr><td>組織ID</td><td><input type="text" name="org_id"></td></tr>
+				<tr><td>組織名</td><td><input type="text" name="org_name"></td></tr>
 			</table>
 			<div>
 				<input type="submit" value="追加" class="button">
@@ -44,10 +70,57 @@
 				<input type="submit" value="戻る" class="button">
 				</div>
 			</form>
+
+			<div>
+				<br><br>
+				<h2>アカウントの管理<h2>
+				<h3>アカウントの利用停止<h3>
+				<h4>一般ユーザー<h4>
+				<ol>
+					{% for post in posts %}
+					
+					<li>{{post.org}} {{post.year}} {{post.name}}
+						<a href="http://{{serverhost}}/admin/account?name={{post.id}}&op=stop">
+							<font color="red">利用停止</font></a>
+					</li>
+
+					{% endfor %}
+				</ol>
+				<h4>監督・コーチ<h4>
+				<ol>
+					{% for post in posts_coach %}
+					<li>{{post.org}} {{post.year}} {{post.name}}
+						<a href="http://{{serverhost}}/admin/account?name={{post.id}}&op=stop"><font color="red">利用停止</font></a>
+					</li>
+					{% endfor %}
+				</ol>	
+				<h4>管理者<h4>
+				<ol>
+					{% for post in posts_admin %}
+					<li>{{post.org}} {{post.year}} {{post.name}}
+						<a href="http://{{serverhost}}/admin/account?name={{post.id}}&op=stop"><font color="red">利用停止</font></a></li>
+					{% endfor %}
+				</ol>
+				<br><br>
+				<h3>アカウントの再開<h3>
+				<h4>利用停止中のアカウント<h4>
+				<ol>
+					{% for post in posts_unusable %}
+					<li>{{post.org}} {{post.year}} {{post.name}}<br>
+					<a href="http://{{serverhost}}/admin/account?name={{post.id}}&op=user">一般ユーザー</a>，<a href="http://{{serverhost}}/admin/account?name={{post.id}}&op=coach">監督・コーチ</a>，<a href="http://{{serverhost}}/admin/account?name={{post.id}}&op=admin">管理者</a>
+			        </li>
+					{% endfor %}
+				</ol>
+			</div>
+			<form action="http://{{serverhost}}/admin/show" method="post">
+				<div>
+				<input type="submit" value="戻る" class="button">
+				</div>
+			</form>
 		</main>
 </body>
 </html>
 
 <footer>
-<p>COPYRIGHT &#169; azumi, kenshin and daiki ALL RIGHTS RESERVED.	</p>
+<p>COPYRIGHT &#169; taberube.jp ALL RIGHTS RESERVED.	</p>
 </footer>

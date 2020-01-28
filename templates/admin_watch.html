@@ -4,15 +4,16 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="../static/css/admin_watch.css">
-	<title>watch</title>
+	<title>taberube.jp</title>
 </head>
 <body>
-	<h2>&nbsp;部活Do!食べる部 for admin
+	<h2>&nbsp;部活Do!食べる部
     <br>&nbsp;&nbsp;&nbsp;&nbsp;Let's hydrate！</h2>
 	<main>
 		<p><a href="http://{{serverhost}}/admin/download?file=data">すべてのデータをCSVでダウンロード</a></p>
 		<p><a href="http://{{serverhost}}/admin/download?file=user">すべてのユーザー情報をCSVでダウンロード</a></p>
 		<h3>過去のデータの参照</h3>
+		<h4>一般ユーザー<h4>
 		<ol>
 			{% for post in posts %}
 			
@@ -20,9 +21,33 @@
 
 			{% endfor %}
 		</ol>
+		<h4>監督・コーチ<h4>
+		<ol>
+			{% for post in posts_coach %}
+			<li>{{post.org}} {{post.year}} {{post.name}}</li>
+			{% endfor %}
+		</ol>
+		<h4>アカウント停止<h4>
+		<ol>
+			{% for post in posts_unusable %}
+			<li><a href="http://{{serverhost}}/admin/watch/show?name={{post.id}}">{{post.org}} {{post.year}} {{post.name}}</a></li>
+			{% endfor %}
+		</ol>	
+		<h4>管理者<h4>
+		<ol>
+			{% for post in posts_admin %}
+			<li>{{post.org}} {{post.year}} {{post.name}}</li>
+			{% endfor %}
+		</ol>
+		<br><br><br>
+		<form action="http://{{serverhost}}/admin/show" method="post">
+			<div>
+			<input type="submit" value="戻る" class="button">
+			</div>
+		</form>
 	</main>
 </body>
 
 <footer>
-<p>COPYRIGHT &#169; azumi, kenshin and daiki ALL RIGHTS RESERVED.	</p>
+<p>COPYRIGHT &#169; taberube.jp ALL RIGHTS RESERVED.	</p>
 </footer>

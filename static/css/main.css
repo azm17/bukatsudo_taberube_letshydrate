@@ -88,7 +88,7 @@ table{
   width: 100%;
   height: auto;
   border: solid 3px #d7ebfe;
-  border-radius: 50%;
+  border-radius: 10%;
 }
 
 .balloon5 .chatting {

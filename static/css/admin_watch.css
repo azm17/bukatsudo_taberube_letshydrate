@@ -24,6 +24,10 @@ h3 {
   /*background: #02badd;*/
   color: white
 }
+h4 {
+  /*background: #02badd;*/
+  color: white
+}
 li {
   color: white;
 }
@@ -47,5 +51,13 @@ p {
 .child {
  width: 20%;
 }
-
+.button {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: white;
+  background: #02badd;
+  margin-top: 30px;
+  padding: 5px 20px;
+  border-style: none;
+}
 }
