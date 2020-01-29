@@ -54,7 +54,6 @@ Werkzeug==0.15.5
 
 ###### 38行目
 ```Python
-
 server_host='test-server0701.herokuapp.com'  
 ```
 
@@ -63,16 +62,20 @@ server_host='test-server0701.herokuapp.com'
 server_host='{グローバルIPまたは，URL}'  
 ```
 ※server_hostはグローバルIPまたは，URLを指定しなければならなりませんが，プログラム一番下(962行目)の  
+
 ```Python
 if __name__ == "__main__":  
   app.run(debug=False,
-  		  host=server_host,
+          host=server_host,
           port=server_port,
           threaded=True)  
 ```
-
  
-の部分のserver_hostの値はプライベートIPである必要がある場合があります。その場合， host='192.168.0.12'のように直接変更してください．
+の部分のserver_hostの値はプライベートIPである必要がある場合があります。その場合， 
+```Python
+host='192.168.0.12'
+```
+のように直接変更してください．
 
 
 ###### 41行目
@@ -82,13 +85,15 @@ server_port=50000
 ```
 ⇒
 ```Python
-server_port='{server.pyを実行するサーバーのポート番号}'
+server_port='(server.pyを実行するサーバーのポート番号)'
 ```
 
 
-に変更する．※プログラム中には{}は不要
+に変更する．
+
 
 ######　42行目と43行目について
+
 例えば，「http://test-server0701.herokuapp.com:50000
 」のように，アドレスの後にポート番号がついている場合は，以下の設定にしてください．含まれない場合は，上をコメントアウト，下をコメントアウト解除してください．
 
@@ -102,8 +107,8 @@ server_address = server_host + ':' + str(server_port)
 ##### my_function2_sql.py
 プログラムファイルserver.pyで
 ```Python
-SQLserver_host='192.168.0.32' ※SQLサーバーのホスト名(サーバーのプライベートIPアドレス)  
-SQLserver_port=3306  ※SQLサーバーのポート番号
+SQLserver_host='192.168.0.32' #SQLサーバーのホスト名(サーバーのプライベートIPアドレス)  
+SQLserver_port=3306  #SQLサーバーのポート番号
 ```
 
 を適切なものに変更する．
