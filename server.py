@@ -28,14 +28,15 @@ import datetime
 import matplotlib.pyplot as plt
 import os
 import glob
+import subprocess
 
 app = Flask(__name__)
 # Server Host
 # server_host = '192.168.0.12'
 # server_host = '192.168.2.102'
 # server_host = '192.168.56.1'
-# server_host = '192.168.0.6'
-server_host='test-server0701.herokuapp.com'
+server_host = '192.168.2.100'
+# server_host='test-server0701.herokuapp.com'
 
 # Server Port
 server_port = 50000
@@ -99,6 +100,126 @@ def login():
     resp.set_cookie('user', userid)
     resp.set_cookie('pass', userpass)
     return resp
+
+@app.route("/newaccount",
+        methods = ["GET", "POST"])
+def newaccount():
+    text = ''
+    org_dic = my_func.get_org()
+    if request.args.get('resgs') == 'user':
+        # ユーザーの登録
+        info = {'newuser':request.form['newuser'],
+                'newpass':request.form['newpass'],
+                'rname'  :request.form['rname'],
+                'type'   :request.form['type'],
+                'org'    :request.form['org'],
+                'year'   :request.form['year'],
+                'mail'   :request.form['mail']
+                }
+        
+        if len(request.form['newuser']) == 0 or len(request.form['newpass']) == 0 or \
+            len(request.form['rname']) == 0 or len(request.form['org']) == 0:
+            
+            sentence = 'ERROR : Fill in the blank!: すべての空欄を埋めてください。'
+            index = render_template('error.html',
+                                    sentence = sentence)
+            return make_response(index)
+        
+        if request.form['newuser'] in my_func.sql_ALLuser_profile().keys():
+            sentence = '''
+                        NG: 新しいユーザーを登録できません。
+                        ユーザー名[{}]は使われています。違うユーザー名を指定してください。
+                        '''.format(request.form['newuser'])
+            index = render_template('error.html',
+                                    sentence = sentence)
+            return make_response(index)
+        
+        try:
+            if my_func.adduser_general(info):
+                text = request.form['rname'] + 'さんを登録しました．'
+
+                try:
+                    title = '【部活Do!食べる部 Let\'s hydrate！】新規ユーザー登録完了通知'
+                    content = '''部活Do!食べる部 Let\'s hydrate！のご利用ありがとうございます。\n\n
+                                新規ユーザーの登録が完了しましたので、登録情報を以下に通知します。\n
+                                ユーザー名：{}\n
+                                パスワード：{}\n
+                                名前：{}\n
+                                組織：{}\n
+                                入学年度：{}\n
+                                メールアドレス：{}\n'''.format(info['newuser'], info['newpass'], info['rname'],org_dic[info['org']]['org_name'],info['year'],info['mail'])
+                    cmd = 'echo '+ content +'| mail -s '+ title +' -r info@taberube.jp ' + info['mail']
+                    subprocess.run(cmd)
+                    print(cmd)
+                    text = text + '登録完了メールが送信されました。'
+                except Exception as error:
+                    text = text + 'メールアドレス入力ミスなどにより、登録完了メールは送信されませんでした。エラー内容：' + error.__str__()
+                
+                index = render_template('registered.html',
+                            text = text,
+                            serverhost = server_address,
+                            newuser = info['newuser'],
+                            newpass = info['newpass'],
+                            rname = info['rname'],
+                            org = org_dic[info['org']]['org_name'],
+                            year = info['year'],
+                            mail  = info['mail'])
+                resp = make_response(index)
+                
+                return resp
+            else:
+                return 'NG'
+        except Exception as error:
+            return 'Fail: SQL Server Error or mail error' + error.__str__()
+
+    
+    user_prof = my_func.sql_ALLuser_profile()
+    
+    posts = []; posts_admin = [] 
+    posts_coach = []; posts_unusable = []
+    posts_org = []
+    
+    for name in user_prof.keys():
+        dic = {'name':user_prof[name]['rname'],
+                'org':org_dic[user_prof[name]['org']]['org_name'],
+                'year':user_prof[name]['year'],
+                'id':name,
+                'keyword':str(user_prof[name]['year']) \
+                     + user_prof[name]['org'] + name,
+               }
+        
+        if user_prof[name]['type'] == 0:
+            posts_admin.append(dic)
+        elif user_prof[name]['type'] == 1:
+            posts.append(dic)
+        elif user_prof[name]['type'] == 2:
+            posts_coach.append(dic)
+        elif user_prof[name]['type'] == -1:
+            posts_unusable.append(dic)
+    
+    
+    for p in org_dic.keys():
+        dic = {'org_id'  :p,
+               'org_name':org_dic[p]['org_name']}
+        
+        posts_org.append(dic)
+        
+    posts = reversed(sorted(posts, key = lambda x:x['keyword']))
+    
+    index = render_template('register.html',
+                            text = text,
+                            serverhost = server_address,
+                            posts = posts,
+                            posts_admin = posts_admin,
+                            posts_coach = posts_coach,
+                            posts_unusable = posts_unusable,
+                            posts_org = posts_org,
+                            year = datetime.datetime.now().year)
+    
+    resp = make_response(index)
+    
+    return resp
+
 
 # 一般ユーザーの結果（表）画面
 @app.route("/show", methods = ["POST"])

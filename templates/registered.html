@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../static/css/admin_register.css">
+	<title>ユーザーの追加</title>
+</head>
+<body>
+	<h2>&nbsp;部活Do!食べる部
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;Let's hydrate！</h2>
+		<main>
+			<h2>{{text}}</h2>
+			<table>
+				<tr><td>ユーザーID</td><td>{{newuser}}</td></tr>
+				<tr><td>パスワード</td><td>{{newpass}}</td></tr>
+				<tr><td>名前</td><td>{{rname}}</td></tr>
+				<tr><td>属性</td><td>一般ユーザー</td></tr>
+				<tr><td>組織</td><td>{{org}}</td></tr>
+				<tr><td>入学年度</td><td>{{year}}</td></tr>
+				<tr><td>メールアドレス</td><td>{{mail}}</td></tr>
+			</table>
+			<br>
+			<form action="http://{{serverhost}}/" method="GET">
+				<div>
+				<input type="submit" value="戻る" class="button">
+				</div>
+			</form>
+		</main>
+</body>
+</html>
+
+<footer>
+<p>COPYRIGHT &#169; taberube.jp ALL RIGHTS RESERVED.	</p>
+</footer>

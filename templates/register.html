@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../static/css/admin_register.css">
+	<title>ユーザーの追加</title>
+</head>
+<body>
+	<h2>&nbsp;部活Do!食べる部
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;Let's hydrate！</h2>
+		<main>
+			<h3>{{text}}</h3>
+			<form action="http://{{serverhost}}/newaccount?resgs=user" method="post">
+			<h2>新しいユーザーを追加する</h2>
+			<table>
+				<tr><td>ユーザーID</td><td><input type="text" name="newuser"></td></tr>
+				<tr><td>パスワード</td><td><input type="text" name="newpass"></td></tr>
+				<tr><td>名前</td>
+					<td><input type="text" name="rname"></td>
+				</tr>
+				<tr>
+					<td>属性</td>
+					<td>
+					<select name="type">
+						<option value="1">一般ユーザー</option>
+					</select>
+					</td>
+				</tr>
+				<tr><td>組織</td>
+					<td>
+					<select name="org">
+						<option value="">-</option>
+						{% for post in posts_org %}
+						<option value="{{post.org_id}}">{{post.org_name}}</option>
+						{% endfor %}
+					</select>
+					</td>
+				</tr>
+				<tr><td>入学年度</td>
+					<td><input value="{{year}}" step="1" type="number" name="year"></td>
+				</tr>
+				<tr><td>メールアドレス</td><td><input type="text" name="mail"></td></tr>
+			</table>
+			<br>
+			<div>
+				<input type="submit" value="追加" class="button">
+			</div>
+			</form>
+			<form action="http://{{serverhost}}/" method="GET">
+				<div>
+				<input type="submit" value="戻る" class="button">
+				</div>
+			</form>
+		</main>
+</body>
+</html>
+
+<footer>
+<p>COPYRIGHT &#169; taberube.jp ALL RIGHTS RESERVED.	</p>
+</footer>
