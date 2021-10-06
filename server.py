@@ -24,18 +24,24 @@ Note:
 
 from flask import Flask, request, render_template, make_response, redirect
 import my_function2_sql as my_func
+import my_function_mail as my_func_mail
 import datetime
 import matplotlib.pyplot as plt
 import os
 import glob
-import subprocess
+import configparser
 
 app = Flask(__name__)
+
+config_ini = configparser.ConfigParser()
+config_ini.read('config.ini', encoding='utf-8')
 # Server Host
 # server_host = '192.168.0.12'
 # server_host = '192.168.2.102'
 # server_host = '192.168.56.1'
-server_host = '192.168.2.100'
+server_host = config_ini['DEFAULT']['server_host']
+# server_host = '192.168.2.100'
+
 # server_host='test-server0701.herokuapp.com'
 
 # Server Port
@@ -139,18 +145,7 @@ def newaccount():
                 text = request.form['rname'] + 'さんを登録しました．'
 
                 try:
-                    title = '【部活Do!食べる部 Let\'s hydrate！】新規ユーザー登録完了通知'
-                    content = '''部活Do!食べる部 Let\'s hydrate！のご利用ありがとうございます。\n\n
-                                新規ユーザーの登録が完了しましたので、登録情報を以下に通知します。\n
-                                ユーザー名：{}\n
-                                パスワード：{}\n
-                                名前：{}\n
-                                組織：{}\n
-                                入学年度：{}\n
-                                メールアドレス：{}\n'''.format(info['newuser'], info['newpass'], info['rname'],org_dic[info['org']]['org_name'],info['year'],info['mail'])
-                    cmd = 'echo '+ content +'| mail -s '+ title +' -r info@taberube.jp ' + info['mail']
-                    subprocess.run(cmd)
-                    print(cmd)
+                    my_func_mail.send_mail_newaccount(info, org_dic)
                     text = text + '登録完了メールが送信されました。'
                 except Exception as error:
                     text = text + 'メールアドレス入力ミスなどにより、登録完了メールは送信されませんでした。エラー内容：' + error.__str__()
