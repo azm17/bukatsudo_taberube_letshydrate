@@ -1,31 +1,39 @@
 import subprocess
+import my_function_mysql as my_func_sql
 
-def send_mail_newaccount(info,org_dic):
-    title = '【部活Do!食べる部 Let\'s hydrate！】新規ユーザー登録完了通知'
-    
-    content = '\{rname}さん、'\
-           +'部活Do!食べる部 Let\'s hydrate！のご利用ありがとうございます。\n'\
-           +'新規ユーザーの登録が完了しましたので、登録情報を通知します。\n'\
-           +'    【登録情報】\n'\
-           +'\tユーザー名：{newuser}\n'\
-           +'\tパスワード：{newpass}\n'\
-           +'\t名前：{rname}\n'\
-           +'\t組織：{org_name}\n'\
-           +'\t入学年度：{year}\n'\
-           +'\tメールアドレス：{mail}\n'\
-           +'\n\n'\
-           +'※もしメールに心当たりがない場合は誰かがあなたのパスワードを変更しようとした恐れがあります。\n'\
-           +'\n\n\n'\
-           +'----------\n'\
-           +'発行: 部活Do!食べる部 Let\'s hydrate！ '\
-           +'COPYRIGHT © taberube.jp ALL RIGHTS RESERVED.'
-    
-    content=content.format(newuser=info['newuser'], 
-                            newpass=info['newpass'], 
-                            rname=info['rname'],
-                            org_name=org_dic[info['org']]['org_name'],
-                            year=info['year'],
-                            mail=info['mail'])
-    
-    cmd = 'echo "'+ content + '" | mail -s "'+title+'" -r info@taberube.jp ' + info['mail']
-    subprocess.run(cmd, shell=True)
+# メール送信機能
+def send_mail():
+    mail_dic = {}
+    sql_query  = " SELECT MAIL_ID, MAIL_TO, MAIL_CC, MAIL_BCC, TITLE, CONTENT "
+    sql_query += " FROM   TBL_MAIL"
+    sql_query += " WHERE  FLG_SYORI = 0"
+    rtn_query = my_func_sql.sql_run_query(sql_query)
+
+    for row in rtn_query:
+        cmd = 'echo "'+ row[5] + '" | mail -s "'+row[4]+'" -r info@taberube.jp ' 
+        
+        if row[2]!="" and row[2] is not None:
+             cmd += " -c " + row[2]
+        
+        if row[3]!="" and row[3] is not None:
+             cmd += " -b " + row[3]
+
+        cmd += " " + row[1]
+        cmd = 'echo "'+ row[5]
+        result = subprocess.run(cmd, shell=True, capture_output=True)
+        
+        sql_query  = " UPDATE TBL_MAIL"
+        sql_query += " SET    FLG_SYORI = 1 "
+        sql_query += "      , UPD_YMD = CURRENT_DATE"
+        sql_query += "      , UPD_TIME = CURRENT_TIME"
+        if result.returncode == 0:
+            sql_query += "      , FLG_SEND = 1 "
+            sql_query += "      , SEND_YMD = CURRENT_DATE"
+            sql_query += "      , SEND_TIME = CURRENT_TIME"
+        sql_query += " WHERE  MAIL_ID  = " + str(row[0])
+        sql_query += " AND    FLG_SYORI = 0"
+        
+        rtn_query = my_func_sql.sql_update_query(sql_query)
+
+if __name__ == "__main__":
+       send_mail()

@@ -23,6 +23,14 @@
 		<table>
 			<tr><td>タイトル</td>
 				<td><input type="text" name="title" class="underline"></td></tr>
+			<tr><td>宛先</td>
+				<td><select name="org">
+					    <option value="ALL">全てのグループ</option>
+						{% for org in org_list %}
+						<option value="{{org.org_code}}">{{org.org_name}}</option>
+						{% endfor %}
+					</select>
+					</td></tr>
 			<tr><td>連絡内容</td>
 				<td><textarea name="contents" rows=5 cols=40></textarea></td></tr>
 		</table>

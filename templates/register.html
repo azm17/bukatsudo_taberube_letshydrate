@@ -12,7 +12,7 @@
 		<main>
 			<h3>{{text}}</h3>
 			<form action="http://{{serverhost}}/newaccount?resgs=user" method="post">
-			<h2>新しいユーザーを追加する</h2>
+			<h2>新しいユーザを追加する</h2>
 			<table>
 				<tr><td>ユーザーID</td><td><input type="text" name="newuser"></td></tr>
 				<tr><td>パスワード</td><td><input type="text" name="newpass"></td></tr>
@@ -23,7 +23,8 @@
 					<td>属性</td>
 					<td>
 					<select name="type">
-						<option value="1">一般ユーザー</option>
+						<option value="1">選手アカウント</option>
+						<option value="2">スタッフ（閲覧用）</option>
 					</select>
 					</td>
 				</tr>
