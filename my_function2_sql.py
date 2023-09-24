@@ -90,6 +90,22 @@ def sql_ALLuser_profile(userid,userpass):
     
     return user_prof
 
+def sql_chk_toroku_key(org_code, user_class, key_code):
+    sql_query  = " SELECT 'X'"
+    sql_query += " FROM   MST_ORG "
+    sql_query += " WHERE  ORG_CODE     = '{}'".format(org_code)
+    if user_class == "1":
+        sql_query += " AND    KEY_PLAYER  = '{}'".format(key_code)
+    elif user_class == "2":
+        sql_query += " AND    KEY_STAFF   = '{}'".format(key_code)
+    
+    rtn_query = my_func_sql.sql_run_query(sql_query)
+
+    if len(rtn_query) == 0 :
+        return False
+    else:
+        return True
+    
 def sql_chk_userid(userid):
     sql_query  = " SELECT 'X'"
     sql_query += " FROM   MST_USER_ID "
@@ -377,8 +393,8 @@ def adduser(admin, adminpass, info):
 def addorg(admin, adminpass, info):
     user_dic = get_user_dic()
     if adminpass == user_dic[admin]:
-        sql_query = '''INSERT INTO MST_ORG (ORG_CODE,ORG_NAME,ADD_YMD,ADD_TIME,ADD_USER_ID) 
-                    VALUES ('{}','{}',CURRENT_DATE,CURRENT_TIME,'{}')'''.format(info['org_id'], info['org_name'],admin)
+        sql_query = '''INSERT INTO MST_ORG (ORG_CODE,ORG_NAME,KEY_PLAYER,KEY_STAFF,ADD_YMD,ADD_TIME,ADD_USER_ID) 
+                    VALUES ('{}','{}','{}','{}',CURRENT_DATE,CURRENT_TIME,'{}')'''.format(info['org_id'], info['org_name'],info['key_player'],info['key_staff'],admin)
         rtn_query = my_func_sql.sql_update_query(sql_query)
         
         return  True
@@ -411,9 +427,10 @@ def sql_data_per_day(day):
     sql_query += "        WEIGHT_BEFORE, WEIGHT_BEFORE, INTAKE_WATER, TEMPERATURE"
     sql_query += " FROM   TBL_DATA_TRAINING"
     sql_query += " WHERE  TRAINING_YMD='{}'".format(day)
+    
     rtn_query = my_func_sql.sql_run_query(sql_query)
     data_list = []
-    for row in sql_query:
+    for row in rtn_query:
         data_list.append({'day'     :row[1],#日
                           'tenki'   :row[2],#天気
                           'shitsudo':row[3],
@@ -552,9 +569,9 @@ def sql_makecsv(file, name, userid,userpass):
         sql_query += " AND    (B.ORG_CODE   = (SELECT X.ORG_CODE "
         sql_query += "                         FROM MST_USER_ID X"
         sql_query += "                         WHERE X.ID = '{}'".format(userid)
-        sql_query += "                         AND   X.PASSWORD = '{}')".format(userpass)
+        sql_query += "                         AND   X.PASSWORD = '{}'".format(userpass)
         sql_query += "                         AND   (X.USER_CLASS = 0 "
-        sql_query += "                                OR X.USER_CLASS = 2)"
+        sql_query += "                                OR X.USER_CLASS = 2))"
         sql_query += "         OR 'ADM'     = (SELECT X.ORG_CODE "
         sql_query += "                         FROM MST_USER_ID X "
         sql_query += "                         WHERE X.ID = '{}'".format(userid)
@@ -565,7 +582,7 @@ def sql_makecsv(file, name, userid,userpass):
             filename = "data_{}.csv".format(name)
         else:
             filename = "data_ALL.csv"
-
+        
         rtn_query = my_func_sql.sql_run_query(sql_query)
         for row in rtn_query:
             data_list.append({'USER_ID'      :row[10],

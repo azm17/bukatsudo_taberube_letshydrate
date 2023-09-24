@@ -80,7 +80,8 @@ def newaccount():
                 'type'   :request.form['type'],
                 'org'    :request.form['org'],
                 'year'   :request.form['year'],
-                'mail'   :request.form['mail']
+                'mail'   :request.form['mail'],
+                'key'   :request.form['key']
                 }
         
         if len(request.form['newuser']) == 0 or len(request.form['newpass']) == 0 or \
@@ -92,6 +93,11 @@ def newaccount():
         
         if my_func.sql_chk_userid(request.form['newuser']) == True:
             sentence = "エラー：ユーザ名[{}]は使用できません。".format(request.form['newuser'])
+            index = render_template('error.html', sentence = sentence)
+            return make_response(index)
+        
+        if my_func.sql_chk_toroku_key(request.form['org'],request.form['type'],request.form['key']) == False:
+            sentence = "エラー：認証コードが違います。"
             index = render_template('error.html', sentence = sentence)
             return make_response(index)
         
@@ -142,5 +148,4 @@ def newaccount():
                                 year = datetime.datetime.now().year)
         
         resp = make_response(index)
-        
         return resp

@@ -244,14 +244,18 @@ def admin_register():
     
     if not (my_func.admin_kakunin(admin, adminpass)):
         sentence = '機能制限： ユーザー管理機能は管理者のみ利用可能です。'
-        index = render_template('error.html',
-                                sentence = sentence)
+        index = render_template('error.html', sentence = sentence)
         return make_response(index)
     
     if request.args.get('resgs') == 'org':
         if len(request.form['org_id']) == 0 \
             or len(request.form['org_name']) == 0:
             sentence = 'ERROR : Fill in the blank!: すべての空欄を埋めてください。'
+            index = render_template('error.html', sentence = sentence)
+            return make_response(index)
+        
+        if len(request.form['org_id']) !=3:
+            sentence = '組織IDは3文字で入力してください。'
             index = render_template('error.html', sentence = sentence)
             return make_response(index)
         
@@ -265,7 +269,9 @@ def admin_register():
         
         try:
             info = {'org_id':request.form['org_id'],
-                    'org_name':request.form['org_name']}
+                    'org_name':request.form['org_name'],
+                    'key_player':request.form['key_player'],
+                    'key_staff':request.form['key_staff']}
             my_func.addorg(admin, adminpass, info)
             
         except Exception as error:
@@ -287,8 +293,7 @@ def admin_register():
             len(request.form['rname']) == 0 or len(request.form['org']) == 0:
             
             sentence = 'ERROR : Fill in the blank!: すべての空欄を埋めてください。'
-            index = render_template('error.html',
-                                    sentence = sentence)
+            index = render_template('error.html',sentence = sentence)
             return make_response(index)
         
         if request.form['newuser'] in my_func.sql_ALLuser_profile(admin,adminpass).keys():
@@ -296,8 +301,7 @@ def admin_register():
                         NG: 新しいユーザーを登録できません。
                         ユーザー名[{}]は使われています。違うユーザー名を指定してください。
                         '''.format(request.form['newuser'])
-            index = render_template('error.html',
-                                    sentence = sentence)
+            index = render_template('error.html', sentence = sentence)
             return make_response(index)
         
         try:
@@ -454,6 +458,7 @@ def admin_message():
 # 管理者用アプリAnalysis，簡単な統計，解析
 @management_app.route("/admin/analysis", methods = ["GET","POST"])
 def admin_analysis():
+    return '調整中です。'
     admin = request.cookies.get('user')
     adminpass = request.cookies.get('pass')
     
@@ -462,8 +467,7 @@ def admin_analysis():
         pass
     else:
         sentence = '初めからやり直してください。'
-        index = render_template('error.html',
-                                sentence = sentence)
+        index = render_template('error.html', sentence = sentence)
         return make_response(index)
     
     day_list = []
@@ -526,10 +530,8 @@ def admin_download():
     try:
         my_func.sql_makecsv(file, name,admin,adminpass)
     except Exception as error:
-        sentence = 'ERROR: CSVファイルを作成できません。' \
-                        + error.__str__()
-        index = render_template('error.html', 
-                                sentence = sentence)
+        sentence = 'ERROR: CSVファイルを作成できません。' + error.__str__()
+        index = render_template('error.html', sentence = sentence)
         return make_response(index)
     ######
     

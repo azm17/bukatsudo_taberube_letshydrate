@@ -42,4 +42,4 @@ def sql_update_query(sql_query):
     cur.execute(sql_query)
     conn.commit()
 
-    return cur.fetchall()
+    return 

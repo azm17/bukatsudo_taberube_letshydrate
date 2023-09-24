@@ -162,16 +162,14 @@ def enter():
         pass
     else:
         sentence = '接続できません。最初の画面からやり直してください。'
-        return make_response(render_template('error.html',
-                                             sentence = sentence))
+        return make_response(render_template('error.html', sentence = sentence))
     
     ## 不正入力処理
     if len(request.form['text']) == 0:
         sentence = 'ERROR： 情報を送信できませんでした。すべての情報を正しく入力しましたか？'\
            +'(detail: トレーニングメニューが入力されていません。)'
            
-        return make_response(render_template('error.html',
-                                             sentence = sentence))
+        return make_response(render_template('error.html', sentence = sentence))
     
     if float(request.form['wb']) <= 0 or float(request.form['wb']) <= 0:
         sentence = '''ERROR： 情報を送信できませんでした。
@@ -247,5 +245,4 @@ def enter():
                     +'(detail: '+error.__str__()+')'
         
         index = render_template('error.html',sentence = sentence)
-        
         return make_response(index)
