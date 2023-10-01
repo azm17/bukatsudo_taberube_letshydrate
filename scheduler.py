@@ -5,7 +5,7 @@ import my_function_mail
 def job():
     my_function_mail.send_mail()
 
-schedule.every(1).seconds.do(job)
+schedule.every(30).seconds.do(job)
 
 while True:
     schedule.run_pending()
