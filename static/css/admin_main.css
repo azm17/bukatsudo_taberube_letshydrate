@@ -14,7 +14,6 @@ main {
   font-weight: bold;
   margin: 10px 20px;
   padding-bottom:  30px;
-
 }
 h2 {
   /*background: #02badd;*/
@@ -123,17 +122,16 @@ p {
   background-size: 80%;
 }
 
-}
 footer {
   color: white
 }
 
 @media screen and (min-width:500px) {
-.child {
-width: 100px;
-height: 100px;
-}
-p {
-transform: translate(0px, 115px);
-}
+  .child {
+    width: 100px;
+    height: 100px;
+  }
+  p {
+    transform: translate(0px, 115px);
+  }
 }

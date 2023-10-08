@@ -2,7 +2,7 @@ import configparser
 import mysql.connector
 
 config_ini = configparser.ConfigParser()
-config_ini.read('config.ini', encoding='utf-8')
+config_ini.read('../ENVFILE/config.ini', encoding='utf-8')
 
 SQLserver_host = config_ini['DEFAULT']['SQLserver_host']
 SQLserver_port = config_ini['DEFAULT']['SQLserver_port']

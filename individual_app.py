@@ -11,7 +11,7 @@ individual_app = Blueprint("individual_app", __name__)
 
 # サーバ環境ファイル読込み
 config_ini = configparser.ConfigParser()
-config_ini.read('config.ini', encoding='utf-8')
+config_ini.read('../ENVFILE/config.ini', encoding='utf-8')
 # サーバ情報設定
 server_address = config_ini['APP']['SERVER_ADDRESS']
 
