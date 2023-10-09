@@ -7,113 +7,64 @@
 	<title>ユーザーの追加</title>
 </head>
 <body>
-	<h2>&nbsp;部活Do!食べる部
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;Let's hydrate！</h2>
-		<!--
-		<main>
-			<h3>{{text}}</h3>
-			<form action="http://{{serverhost}}/newaccount?resgs=user" method="post">
-			<h2>新しいユーザを追加する</h2>
-			<table>
-				<tr><td>ユーザーID</td><td><input type="text" name="newuser"></td></tr>
-				<tr><td>パスワード</td><td><input type="text" name="newpass"></td></tr>
-				<tr><td>名前</td>
-					<td><input type="text" name="rname"></td>
-				</tr>
-				<tr>
-					<td>アカウントタイプ</td>
-					<td>
-					<select name="type">
-						<option value="1">選手アカウント</option>
-						<option value="2">スタッフ（閲覧用）</option>
-					</select>
-					</td>
-				</tr>
-				<tr><td>組織</td>
-					<td>
-					<select name="org">
-						<option value="">-</option>
-						{% for post in posts_org %}
-						<option value="{{post.org_id}}">{{post.org_name}}</option>
-						{% endfor %}
-					</select>
-					</td>
-				</tr>
-				<tr><td>入学年度</td>
-					<td><input value="{{year}}" step="1" type="number" name="year"></td>
-				</tr>
-				<tr><td>メールアドレス</td><td><input type="text" name="mail"></td></tr>
-				<tr><td>認証コード</td><td><input type="text" name="key"></td></tr>
-				<tr><td>※認証コードは指定がある場合は入力してください</td></tr>
-			</table>
-			<br>
-			<div>
-				<input type="submit" value="追加" class="button">
+    <h2>&nbsp;部活Do!食べる部
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;Let's hydrate！</h2>
+	<form action="http://{{serverhost}}/newaccount?resgs=user" method="post">
+		<div class="Form">
+			<h2>アカウントの作成</h2>
+			<div class="Form-Item">
+			<p class="Form-Item-Label">
+				<span class="Form-Item-Label-Required">必須</span>利用者ID
+			</p>
+			<input type="text" name="newuser" required="required" class="Form-Item-Input" placeholder="例）taberube">
 			</div>
-			</form>
-			<form action="http://{{serverhost}}/" method="GET">
-				<div>
-				<input type="submit" value="戻る" class="button">
-				</div>
-			</form>
-		</main> 
-	    -->
-		<form action="http://{{serverhost}}/newaccount?resgs=user" method="post">
-			<div class="Form">
-				<h2>アカウントの作成</h2>
-				<div class="Form-Item">
+			<div class="Form-Item">
 				<p class="Form-Item-Label">
-					<span class="Form-Item-Label-Required">必須</span>利用者ID
+				<span class="Form-Item-Label-Required">必須</span>パスワード
 				</p>
-				<input type="text" name="newuser" required="required" class="Form-Item-Input" placeholder="例）taberube">
-				</div>
-				<div class="Form-Item">
-					<p class="Form-Item-Label">
-					<span class="Form-Item-Label-Required">必須</span>パスワード
-					</p>
-					<input type="text" name="newpass" required="required" class="Form-Item-Input" placeholder="例）Password">
-				</div>
-				<div class="Form-Item">
-					<p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>氏名</p>
-					<input type="text" name="rname" required="required" class="Form-Item-Input" placeholder="例）部活Do！ 食べる部">
-				</div>
-				<div class="Form-Item">
-					<p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>アカウント種類</p>
-					<select name="type" required="required" class="Form-Item-Input">
-						<option value="">（選択してください）</option>
-						<option value="1">選手アカウント</option>
-						<option value="2">スタッフ（閲覧用）</option>
-					</select>
-				</div>
-				<div class="Form-Item">
-					<p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>チーム</p>
-					<select name="org" required="required" class="Form-Item-Input">
-						<option value="">（選択してください）</option>
-						{% for post in posts_org %}
-						<option value="{{post.org_id}}">{{post.org_name}}</option>
-						{% endfor %}
-					</select>
-				</div>
-				<div class="Form-Item">
-					<p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>登録年度</p>
-					<input type="number" name="year" required="required" value="{{year}}" step="1" class="Form-Item-Input" ">
-				</div>
-				<div class="Form-Item">
+				<input type="text" name="newpass" required="required" class="Form-Item-Input" placeholder="例）Password">
+			</div>
+			<div class="Form-Item">
+				<p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>氏名</p>
+				<input type="text" name="rname" required="required" class="Form-Item-Input" placeholder="例）部活Do！ 食べる部">
+			</div>
+			<div class="Form-Item">
+				<p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>アカウント種類</p>
+				<select name="type" required="required" class="Form-Item-Input">
+					<option value="">（選択してください）</option>
+					<option value="1">選手アカウント</option>
+					<option value="2">スタッフ（閲覧用）</option>
+				</select>
+			</div>
+			<div class="Form-Item">
+				<p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>チーム</p>
+				<select name="org" required="required" class="Form-Item-Input">
+					<option value="">（選択してください）</option>
+					{% for post in posts_org %}
+					<option value="{{post.org_id}}">{{post.org_name}}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="Form-Item">
+				<p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>登録年度</p>
+				<input type="number" name="year" required="required" value="{{year}}" step="1" class="Form-Item-Input" ">
+			</div>
+			<div class="Form-Item">
 				<p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>メールアドレス</p>
 				<input type="email" name="mail" required="required" class="Form-Item-Input" placeholder="例）example@gmail.com">
-				</div>
-				<div class="Form-Item">
-					<p class="Form-Item-Label"><span class="Form-Item-Label-Required">任意</span>認証コード</p>
-					<input type="text" name="key" class="Form-Item-Input" placeholder="（指定がある場合は入力してください）">
-				</div>
-				<input type="submit" class="Form-Btn" value="送信する">
 			</div>
-		</form>
-		<form action="http://{{serverhost}}/" method="GET">
-			<div class="Form">
-				<input type="submit" value="戻る" class="Form-Btn">
+			<div class="Form-Item">
+				<p class="Form-Item-Label"><span class="Form-Item-Label-Required">任意</span>認証コード</p>
+				<input type="text" name="key" class="Form-Item-Input" placeholder="（指定がある場合は入力してください）">
 			</div>
-		</form>
+			<input type="submit" class="Form-Btn" value="送信する">
+		</div>
+	</form>
+	<form action="http://{{serverhost}}/" method="GET">
+		<div class="Form">
+			<input type="submit" value="戻る" class="Form-Btn">
+		</div>
+	</form>
 </body>
 </html>
 

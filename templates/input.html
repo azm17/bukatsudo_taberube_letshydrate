@@ -3,7 +3,7 @@
 <head>
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="../static/css/input.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/admin_register.css">
 	<title>{{ title }}</title>
 </head>
 <body>
@@ -13,16 +13,16 @@
 		<div class="Form">
 			<h2>トレーニング内容の入力</h2>
 			<div class="Form-Item">
-			<p class="Form-Item-Label">
-				<span class="Form-Item-Label-Required">必須</span>運動前体重(kg)
-			</p>
-			<input value="60" step="0.1" type="number" name="wa" required="required" class="Form-Item-Input" >
+				<p class="Form-Item-Label">
+					<span class="Form-Item-Label-Required">必須</span>運動前体重(kg)
+				</p>
+				<input value="60" step="0.1" type="number" name="wb" required="required" class="Form-Item-Input" >
 			</div>
 			<div class="Form-Item">
 				<p class="Form-Item-Label">
 				<span class="Form-Item-Label-Required">必須</span>運動後体重(kg)
 				</p>
-				<input value="60" step="0.1" type="number" name="wb" required="required" class="Form-Item-Input">
+				<input value="60" step="0.1" type="number" name="wa" required="required" class="Form-Item-Input">
 			</div>
 			<div class="Form-Item">
 				<p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>トレーニング内容</p>
@@ -65,22 +65,22 @@
 				</select>
 			</div>
 			<div class="Form-Item">
-			<p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>湿度(％)</p>
-			<select name="sitsu" required="required" class="Form-Item-Input">
-				<option value="">-</option>
-				{% for i in range(101) %}
-				<option value="{{i}}">{{i}}</option>
-				{% endfor %}
-			</select>
+				<p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>湿度(％)</p>
+				<select name="sitsu" required="required" class="Form-Item-Input">
+					<option value="">-</option>
+					{% for i in range(101) %}
+					<option value="{{i}}">{{i}}</option>
+					{% endfor %}
+				</select>
 			</div>
 			<input type="submit" class="Form-Btn" value="送信する">
 		</div>
 	</form>
-<!--	<form action="http://{{serverhost}}/show" method="post">
+	<form action="http://{{serverhost}}/show" method="post">
 		<div class="Form">
 			<input type="submit" value="戻る" class="Form-Btn">
 		</div>
-	</form>-->
+	</form>
 </body>
 <footer>
 <p>COPYRIGHT &#169; taberube.jp ALL RIGHTS RESERVED.	</p>
