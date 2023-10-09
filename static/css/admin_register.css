@@ -200,3 +200,10 @@ td {
     font-size: 16px;
   }
 }
+
+footer {
+	transform: translate(0px,65px);
+	text-align: center;
+	font-size: 0.7em;
+	color: white;
+}
